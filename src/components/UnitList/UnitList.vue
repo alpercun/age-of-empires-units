@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :headers="headers" :items="unitsStore.units">
+  <v-data-table :headers="headers" :items="units">
     <template #[`item.cost`]="{ item }">
       {{ formatCost(item.cost) }}
     </template>
@@ -7,25 +7,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useUnitsStore } from '@/stores/units';
+import { defineProps } from 'vue';
 
 type Resource = 'Food' | 'Wood' | 'Gold';
 
-const unitsStore = useUnitsStore();
+interface Unit {
+  id: number;
+  name: string;
+  age: string;
+  cost: Record<Resource, number> | undefined;
+}
+
+interface Header {
+  id: string;
+  title: string;
+  key: string;
+}
+
+defineProps<{
+  units: Unit[];
+  headers: Header[];
+}>();
 
 const resourceIcons: Record<Resource, string> = {
   Food: '🍎',
   Wood: '🪵',
   Gold: '💰',
 };
-
-const headers = ref([
-  { id: 'id', title: 'ID', key: 'id' },
-  { id: 'name', title: 'Name', key: 'name' },
-  { id: 'age', title: 'Age', key: 'age' },
-  { id: 'cost', title: 'Cost', key: 'cost' },
-]);
 
 const formatCost = (cost: Record<Resource, number> | undefined): string => {
   if (!cost || Object.keys(cost).length === 0) return '-';
