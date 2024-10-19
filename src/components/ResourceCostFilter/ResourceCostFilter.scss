@@ -1,0 +1,29 @@
+.resource-cost-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: $spacer-6;
+
+  &-checkbox {
+    min-width: 100px;
+  }
+
+  &-slider {
+    min-width: 180px;
+
+    &-value {
+      color: $gray-5;
+
+      &-active {
+        color: $gray-4;
+      }
+    }
+  }
+
+  &-slider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacer-4;
+  }
+}

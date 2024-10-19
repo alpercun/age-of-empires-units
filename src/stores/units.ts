@@ -2,22 +2,111 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import unitsData from '@/assets/data/age-of-empires-units.json';
 
+enum Age {
+  All = 'All',
+  Dark = 'Dark',
+  Feudal = 'Feudal',
+  Castle = 'Castle',
+  Imperial = 'Imperial',
+}
+
+enum ResourceType {
+  Wood = 'Wood',
+  Food = 'Food',
+  Gold = 'Gold',
+}
+
+type ResourceFilter = {
+  selected: boolean;
+  type: ResourceType;
+  range: {
+    min: number;
+    max: number;
+  };
+};
+
 export const useUnitsStore = defineStore('units', () => {
-  const title = ref('Welcome to the Age of Empires Units');
-  const selectedAges = ref<string[]>(['All']);
-  const ages = ref<string[]>(['All', 'Dark', 'Feudal', 'Castle', 'Imperial']);
+  const selectedAges = ref<string[]>([Age.All]);
+  const ages = ref<string[]>([
+    Age.All,
+    Age.Dark,
+    Age.Feudal,
+    Age.Castle,
+    Age.Imperial,
+  ]);
+
+  const costWood = ref<ResourceFilter>({
+    selected: false,
+    type: ResourceType.Wood,
+    range: {
+      min: 0,
+      max: 200,
+    },
+  });
+
+  const costFood = ref<ResourceFilter>({
+    selected: false,
+    type: ResourceType.Food,
+    range: {
+      min: 0,
+      max: 200,
+    },
+  });
+
+  const costGold = ref<ResourceFilter>({
+    selected: false,
+    type: ResourceType.Gold,
+    range: {
+      min: 0,
+      max: 200,
+    },
+  });
+
+  const setCostWood = (data: ResourceFilter) => {
+    costWood.value = data;
+  };
+
+  const setCostFood = (data: ResourceFilter) => {
+    costFood.value = data;
+  };
+
+  const setCostGold = (data: ResourceFilter) => {
+    costGold.value = data;
+  };
+
+  const matchCost = (
+    unitCost: number | undefined,
+    costFilter: ResourceFilter,
+  ) => {
+    if (!costFilter.selected) return true;
+    const cost = unitCost ?? 0;
+    return cost >= costFilter.range.min && cost <= costFilter.range.max;
+  };
+
+  const matchAge = (unitAge: string, selectedAges: string[]) => {
+    return selectedAges.includes(Age.All) || selectedAges.includes(unitAge);
+  };
 
   const filteredUnits = computed(() => {
-    const data = unitsData.units;
-    if (selectedAges.value.includes('All')) return data;
+    return unitsData.units.filter(unit => {
+      const ageMatch = matchAge(unit.age, selectedAges.value);
+      const costWoodMatch = matchCost(unit.cost?.Wood, costWood.value);
+      const costFoodMatch = matchCost(unit.cost?.Food, costFood.value);
+      const costGoldMatch = matchCost(unit.cost?.Gold, costGold.value);
 
-    return data.filter(unit => selectedAges.value.includes(unit.age));
+      return ageMatch && costWoodMatch && costFoodMatch && costGoldMatch;
+    });
   });
 
   return {
-    title,
     units: filteredUnits,
     selectedAges,
     ages,
+    costWood,
+    costFood,
+    costGold,
+    setCostWood,
+    setCostFood,
+    setCostGold,
   };
 });

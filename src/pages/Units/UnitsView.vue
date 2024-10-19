@@ -2,6 +2,24 @@
   <v-container>
     <h1>Units Page</h1>
     <UnitAgeFilter v-model="unitsStore.selectedAges" :items="unitsStore.ages" />
+    <ResourceCostFilter
+      :type="unitsStore.costWood.type"
+      :min="0"
+      :max="200"
+      @update="unitsStore.setCostWood"
+    />
+    <ResourceCostFilter
+      :type="unitsStore.costFood.type"
+      :min="0"
+      :max="200"
+      @update="unitsStore.setCostFood"
+    />
+    <ResourceCostFilter
+      :type="unitsStore.costGold.type"
+      :min="0"
+      :max="200"
+      @update="unitsStore.setCostGold"
+    />
     <UnitList :units="unitsStore.units" :headers="headers" />
   </v-container>
 </template>
@@ -10,6 +28,7 @@
 import { ref } from 'vue';
 import UnitList from '@/components/UnitList/UnitList.vue';
 import UnitAgeFilter from '@/components/UnitAgeFilter/UnitAgeFilter.vue';
+import ResourceCostFilter from '@/components/ResourceCostFilter/ResourceCostFilter.vue';
 import { useUnitsStore } from '@/stores/units';
 
 const unitsStore = useUnitsStore();
