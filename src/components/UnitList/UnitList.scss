@@ -1,0 +1,30 @@
+.unit-list {
+  background-color: $dark-surface;
+  border: 1px solid $dark-border;
+  color: $dark-text-primary;
+  border-radius: $spacer-4;
+  margin-top: $spacer-8;
+
+  &-name {
+    color: $dark-text-primary;
+    text-decoration: none;
+  }
+
+  :deep(.v-data-table__tr) {
+    td {
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%;
+      padding: $spacer-6;
+    }
+  }
+
+  :deep(thead) {
+    tr > th {
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%;
+      padding: $spacer-6 !important;
+    }
+  }
+}

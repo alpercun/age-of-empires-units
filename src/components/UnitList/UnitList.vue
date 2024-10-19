@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :headers="headers" :items="units">
+  <v-data-table class="unit-list" :headers="headers" :items="units">
     <template #[`item.cost`]="{ item }">
       {{ formatCost(item.cost) }}
     </template>
@@ -44,3 +44,5 @@ const formatCost = (cost: Record<Resource, number> | undefined): string => {
     .join(', ');
 };
 </script>
+
+<style src="./UnitList.scss" lang="scss" scoped />
