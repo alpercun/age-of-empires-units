@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <h1>Units Page</h1>
+    <UnitAgeFilter v-model="unitsStore.selectedAges" :items="unitsStore.ages" />
     <UnitList :units="unitsStore.units" :headers="headers" />
   </v-container>
 </template>
@@ -8,6 +9,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import UnitList from '@/components/UnitList/UnitList.vue';
+import UnitAgeFilter from '@/components/UnitAgeFilter/UnitAgeFilter.vue';
 import { useUnitsStore } from '@/stores/units';
 
 const unitsStore = useUnitsStore();
