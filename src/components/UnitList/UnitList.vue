@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 type Resource = 'Food' | 'Wood' | 'Gold';
 
 interface Unit {
