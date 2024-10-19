@@ -1,5 +1,10 @@
 <template>
-  <v-data-table class="unit-list" :headers="headers" :items="units">
+  <v-data-table
+    class="unit-list"
+    :headers="headers"
+    :items="units"
+    @click:row="handleRowClick"
+  >
     <template #[`item.cost`]="{ item }">
       {{ formatCost(item.cost) }}
     </template>
@@ -7,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+import { useUnitsStore } from '@/stores/units';
+
 type Resource = 'Food' | 'Wood' | 'Gold';
 
 interface Unit {
@@ -33,6 +41,9 @@ const resourceIcons: Record<Resource, string> = {
   Gold: '💰',
 };
 
+const router = useRouter();
+const unitsStore = useUnitsStore();
+
 const formatCost = (cost: Record<Resource, number> | undefined): string => {
   if (!cost || Object.keys(cost).length === 0) return '-';
 
@@ -42,6 +53,11 @@ const formatCost = (cost: Record<Resource, number> | undefined): string => {
         `${resourceIcons[resource as Resource]} ${resource}: ${amount}`,
     )
     .join(', ');
+};
+
+const handleRowClick = (event: Event, { item }: { item: Unit }) => {
+  unitsStore.setSelectedUnit(item);
+  router.push(`/units/${item.id}`);
 };
 </script>
 

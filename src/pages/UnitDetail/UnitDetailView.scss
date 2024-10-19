@@ -1,0 +1,44 @@
+.unit-detail-view {
+  &-title {
+    color: $dark-text-primary;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: $spacer-8;
+  }
+
+  &-description {
+    color: $dark-text-secondary;
+    font-size: 16px;
+    margin-bottom: $spacer-8;
+  }
+
+  &-card {
+    background-color: $dark-surface;
+    border: 1px solid $dark-border;
+    border-radius: $rounded-lg;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: $spacer-2;
+    gap: $spacer-4;
+
+    strong {
+      color: $dark-text-primary;
+      font-weight: 600;
+    }
+
+    span {
+      color: $dark-text-secondary;
+    }
+  }
+
+  &-not-found {
+    text-align: center;
+    font-size: 24px;
+    color: $dark-text-primary;
+    margin-top: $spacer-8;
+  }
+}

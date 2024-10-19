@@ -25,6 +25,29 @@ type ResourceFilter = {
   };
 };
 
+interface Unit {
+  id: number;
+  name: string;
+  description: string;
+  expansion: string;
+  age: string;
+  cost: {
+    Wood?: number;
+    Food?: number;
+    Gold?: number;
+  };
+  build_time: number;
+  reload_time: number;
+  attack_delay: number;
+  movement_rate: number;
+  line_of_sight: number;
+  hit_points: number;
+  range: number;
+  attack: number;
+  armor: string;
+  accuracy: string;
+}
+
 export const useUnitsStore = defineStore('units', () => {
   const selectedAges = ref<string[]>([Age.All]);
   const ages = ref<string[]>([
@@ -98,6 +121,12 @@ export const useUnitsStore = defineStore('units', () => {
     });
   });
 
+  const selectedUnit = ref<Unit | null>(null);
+
+  const setSelectedUnit = (unit: Unit) => {
+    selectedUnit.value = unit;
+  };
+
   return {
     units: filteredUnits,
     selectedAges,
@@ -108,5 +137,7 @@ export const useUnitsStore = defineStore('units', () => {
     setCostWood,
     setCostFood,
     setCostGold,
+    selectedUnit,
+    setSelectedUnit,
   };
 });
