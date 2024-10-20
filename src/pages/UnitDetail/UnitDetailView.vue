@@ -40,7 +40,13 @@ const formatLabel = (key: string): string => {
     .join(' ');
 };
 
-const formatValue = (value: string | number | object): string => {
+const formatValue = (
+  value: string | number | object | null | undefined,
+): string => {
+  if (value === null || value === undefined) {
+    return '-';
+  }
+
   if (typeof value === 'object') {
     if (Array.isArray(value)) {
       return value.join(', ');

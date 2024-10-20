@@ -10,7 +10,7 @@ enum Age {
   Imperial = 'Imperial',
 }
 
-enum ResourceType {
+export enum ResourceType {
   Wood = 'Wood',
   Food = 'Food',
   Gold = 'Gold',
@@ -25,7 +25,7 @@ type ResourceFilter = {
   };
 };
 
-interface Unit {
+export interface Unit {
   id: number;
   name: string;
   description: string;
@@ -35,17 +35,17 @@ interface Unit {
     Wood?: number;
     Food?: number;
     Gold?: number;
-  };
-  build_time: number;
-  reload_time: number;
-  attack_delay: number;
-  movement_rate: number;
-  line_of_sight: number;
-  hit_points: number;
-  range: number;
-  attack: number;
-  armor: string;
-  accuracy: string;
+  } | null;
+  build_time?: number;
+  reload_time?: number;
+  attack_delay?: number;
+  movement_rate?: number;
+  line_of_sight?: number;
+  hit_points?: number;
+  range?: number | string;
+  attack?: number;
+  armor?: string | number;
+  accuracy?: string | number;
 }
 
 export const useUnitsStore = defineStore('units', () => {

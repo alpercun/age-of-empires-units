@@ -33,16 +33,10 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useUnitsStore } from '@/stores/units';
+import type { Unit } from '@/stores/units';
 import { ref, computed } from 'vue';
 
 type Resource = 'Food' | 'Wood' | 'Gold';
-
-interface Unit {
-  id: number;
-  name: string;
-  age: string;
-  cost: Record<Resource, number> | undefined;
-}
 
 interface Header {
   id: string;
@@ -65,7 +59,7 @@ const resourceIcons: Record<Resource, string> = {
 const router = useRouter();
 const unitsStore = useUnitsStore();
 
-const formatCost = (cost: Record<Resource, number> | undefined): string => {
+const formatCost = (cost: Unit['cost']): string => {
   if (!cost || Object.keys(cost).length === 0) return '-';
 
   return Object.entries(cost)

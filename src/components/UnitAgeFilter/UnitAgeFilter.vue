@@ -14,13 +14,15 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue';
+
 defineProps({
   modelValue: {
     type: Array,
     required: true,
   },
   items: {
-    type: Array,
+    type: Array as PropType<string[]>,
     required: true,
   },
 });

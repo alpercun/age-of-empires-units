@@ -36,9 +36,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { ResourceType } from '@/stores/units';
 
 const props = defineProps<{
-  type: string;
+  type: ResourceType;
   min: number;
   max: number;
 }>();
@@ -48,7 +49,7 @@ const emit = defineEmits<{
     e: 'update',
     value: {
       selected: boolean;
-      type: string;
+      type: ResourceType;
       range: { min: number; max: number };
     },
   ): void;
