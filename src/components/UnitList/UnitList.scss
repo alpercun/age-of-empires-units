@@ -7,54 +7,52 @@
     border-radius: $spacer-4;
     color: $dark-text-primary;
 
-    :deep {
-      .v-field__input {
-        min-height: 32px;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
+    :deep(.v-field__input) {
+      min-height: 32px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
 
-      .v-field__field,
-      .v-select__selection {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
+    :deep(.v-field__field),
+    :deep(.v-select__selection) {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
 
-      .v-select__selection-text {
-        display: none;
-      }
+    :deep(.v-select__selection-text) {
+      display: none;
+    }
 
-      .v-select__selection--comma:first-of-type::after {
-        content: 'Visible Columns';
-        font-size: 14px;
-        color: $dark-text-primary;
-      }
+    :deep(.v-select__selection--comma:first-of-type::after) {
+      content: 'Visible Columns';
+      font-size: 14px;
+      color: $dark-text-primary;
+    }
 
-      .v-field__append-inner {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding-top: 0;
-      }
+    :deep(.v-field__append-inner) {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-top: 0;
+    }
 
-      .v-input__prepend {
-        margin-left: 16px;
-        height: 30px;
-      }
+    :deep(.v-input__prepend) {
+      margin-left: 16px;
+      height: 30px;
+    }
 
-      .v-field__outline {
-        display: none;
-      }
+    :deep(.v-field__outline) {
+      display: none;
+    }
 
-      .v-field__overlay {
-        height: 30px;
-        border-radius: 0 7px 7px 0;
-      }
+    :deep(.v-field__overlay) {
+      height: 30px;
+      border-radius: 0 7px 7px 0;
+    }
 
-      .mdi-eye::before {
-        font-size: 20px;
-      }
+    :deep(.mdi-eye::before) {
+      font-size: 20px;
     }
   }
 
