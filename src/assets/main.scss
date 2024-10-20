@@ -1,2 +1,16 @@
 @use '@/assets/variables/index' as *;
 @use '@/assets/base/index' as *;
+
+.v-list-item {
+  padding: 0 !important;
+
+  &-title {
+    font-size: 12px !important;
+  }
+
+  .v-selection-control__input {
+    font-size: 12px !important;
+    width: 12px !important;
+    height: 12px !important;
+  }
+}

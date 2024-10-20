@@ -1,29 +1,89 @@
 .unit-list {
-  background-color: $dark-surface;
-  border: 1px solid $dark-border;
-  color: $dark-text-primary;
-  border-radius: $spacer-4;
-  margin-top: $spacer-8;
-
-  &-name {
+  &-column-visibility-controls {
+    max-width: 260px;
+    height: 32px;
+    background-color: $dark-surface;
+    border: 1px solid $dark-border;
+    border-radius: $spacer-4;
     color: $dark-text-primary;
-    text-decoration: none;
+
+    :deep {
+      .v-field__input {
+        min-height: 32px;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .v-field__field,
+      .v-select__selection {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .v-select__selection-text {
+        display: none;
+      }
+
+      .v-select__selection--comma:first-of-type::after {
+        content: 'Visible Columns';
+        font-size: 14px;
+        color: $dark-text-primary;
+      }
+
+      .v-field__append-inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-top: 0;
+      }
+
+      .v-input__prepend {
+        margin-left: 16px;
+        height: 30px;
+      }
+
+      .v-field__outline {
+        display: none;
+      }
+
+      .v-field__overlay {
+        height: 30px;
+        border-radius: 0 7px 7px 0;
+      }
+
+      .mdi-eye::before {
+        font-size: 20px;
+      }
+    }
   }
 
-  :deep(.v-data-table__tr) {
-    td {
+  &-column-visibility-controls-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-table {
+    background-color: $dark-surface;
+    border: 1px solid $dark-border;
+    color: $dark-text-primary;
+    border-radius: $spacer-4;
+    margin-top: $spacer-8;
+
+    &-name {
+      color: $dark-text-primary;
+      text-decoration: none;
+    }
+
+    :deep(.v-data-table__tr td),
+    :deep(thead tr > th) {
       display: table-cell;
       vertical-align: middle;
       height: 100%;
       padding: $spacer-6;
     }
-  }
 
-  :deep(thead) {
-    tr > th {
-      display: table-cell;
-      vertical-align: middle;
-      height: 100%;
+    :deep(thead tr > th) {
       padding: $spacer-6 !important;
     }
   }
