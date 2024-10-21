@@ -9,6 +9,19 @@ export default mergeConfig(
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'html'],
+        exclude: [
+          '**/vitest.setup.ts',
+          '**/*.{test,spec}.{js,ts,jsx,tsx}',
+          '**/__tests__/**',
+          '**/node_modules/**',
+          '**/*.config.{js,ts}',
+          '**/env.d.ts',
+          '**/dist/**',
+        ],
+      },
     },
   }),
 );

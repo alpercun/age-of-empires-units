@@ -19,7 +19,6 @@
       class="unit-list-table"
       :headers="visibleHeaders"
       :items="units"
-      :items-per-page="20"
       height="400"
       @click:row="handleRowClick"
     >
