@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { beforeAll, describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitDetailView from '../UnitDetailView.vue';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -7,6 +7,19 @@ import * as directives from 'vuetify/directives';
 import { createPinia, setActivePinia } from 'pinia';
 import ResizeObserver from 'resize-observer-polyfill';
 import type { ComponentPublicInstance } from 'vue';
+
+// useRoute ve onMounted için mock oluştur
+vi.mock('vue-router', () => ({
+  useRoute: vi.fn(() => ({ params: { id: '1' } })),
+}));
+
+vi.mock('vue', async () => {
+  const actual = await vi.importActual('vue');
+  return {
+    ...actual,
+    onMounted: vi.fn(callback => callback()),
+  };
+});
 
 const vuetify = createVuetify({
   components,
@@ -21,7 +34,9 @@ describe('UnitDetailView', () => {
 
   it('should be rendered', () => {
     const wrapper = mount(UnitDetailView, {
-      global: { plugins: [vuetify] },
+      global: {
+        plugins: [vuetify, createPinia()],
+      },
     });
     expect(wrapper.exists()).toBe(true);
   });

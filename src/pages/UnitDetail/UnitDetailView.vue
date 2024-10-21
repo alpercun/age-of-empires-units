@@ -29,9 +29,14 @@
 <script setup lang="ts">
 import { useUnitsStore } from '@/stores/units';
 import { storeToRefs } from 'pinia';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const unitsStore = useUnitsStore();
 const { selectedUnit } = storeToRefs(unitsStore);
+
+const unit = ref(unitsStore.selectedUnit);
 
 const formatLabel = (key: string): string => {
   return key
@@ -59,6 +64,17 @@ const formatValue = (
 
   return value.toString();
 };
+
+onMounted(() => {
+  if (!unit.value) {
+    const unitId = route.params.id;
+    const foundUnit = unitsStore.units.find(unit => unit.id === Number(unitId));
+    if (foundUnit) {
+      unit.value = foundUnit;
+      unitsStore.setSelectedUnit(foundUnit);
+    }
+  }
+});
 </script>
 
 <style src="./UnitDetailView.scss" lang="scss" scoped />
