@@ -1,12 +1,12 @@
 <template>
   <v-container class="unit-detail-view">
-    <div v-if="selectedUnit">
-      <h1 class="unit-detail-view-title">{{ selectedUnit.name }}</h1>
-      <p class="unit-detail-view-description">{{ selectedUnit.description }}</p>
+    <div v-if="unit">
+      <h1 class="unit-detail-view-title">{{ unit.name }}</h1>
+      <p class="unit-detail-view-description">{{ unit.description }}</p>
       <v-card class="unit-detail-view-card">
         <v-card-text>
           <v-row>
-            <template v-for="(value, key) in selectedUnit" :key="key">
+            <template v-for="(value, key) in unit" :key="key">
               <v-col
                 cols="12"
                 sm="6"
@@ -27,8 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUnitsStore } from '@/stores/units';
-import { storeToRefs } from 'pinia';
+import { useUnitsStore, type Unit } from '@/stores/units';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import {
@@ -59,9 +58,8 @@ const iconMap: { [key: string]: string } = {
 
 const route = useRoute();
 const unitsStore = useUnitsStore();
-const { selectedUnit } = storeToRefs(unitsStore);
 
-const unit = ref(unitsStore.selectedUnit);
+const unit = ref<Unit | null>(null);
 
 const formatLabel = (key: string): string => {
   const formattedKey = key
@@ -95,10 +93,10 @@ const formatValue = (
 
 onMounted(() => {
   const unitId = route.params.id;
-  const foundUnit = unitsStore.units.find(unit => unit.id === Number(unitId));
+  const foundUnit = unitsStore.getSelectedUnit(Number(unitId));
+
   if (foundUnit) {
     unit.value = foundUnit;
-    unitsStore.setSelectedUnit(foundUnit);
   }
 });
 </script>

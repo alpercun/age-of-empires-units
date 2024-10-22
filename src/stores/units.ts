@@ -121,10 +121,8 @@ export const useUnitsStore = defineStore('units', () => {
     });
   });
 
-  const selectedUnit = ref<Unit | null>(null);
-
-  const setSelectedUnit = (unit: Unit) => {
-    selectedUnit.value = unit;
+  const getSelectedUnit = (id: number) => {
+    return unitsData.units.find(unit => unit.id === id);
   };
 
   return {
@@ -137,7 +135,6 @@ export const useUnitsStore = defineStore('units', () => {
     setCostWood,
     setCostFood,
     setCostGold,
-    selectedUnit,
-    setSelectedUnit,
+    getSelectedUnit,
   };
 });
