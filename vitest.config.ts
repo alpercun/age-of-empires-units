@@ -20,6 +20,7 @@ export default mergeConfig(
           '**/*.config.{js,ts}',
           '**/env.d.ts',
           '**/dist/**',
+          '**/src/main.ts',
         ],
       },
     },
