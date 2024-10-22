@@ -7,6 +7,7 @@ import * as directives from 'vuetify/directives';
 import { createPinia, setActivePinia } from 'pinia';
 import ResizeObserver from 'resize-observer-polyfill';
 import type { ComponentPublicInstance } from 'vue';
+import { useUnitsStore } from '@/stores/units';
 
 // useRoute ve onMounted için mock oluştur
 vi.mock('vue-router', () => ({
@@ -53,6 +54,7 @@ describe('UnitDetailView', () => {
     expect(formatLabel('build_time')).toBe('⏱️ Build Time');
     expect(formatLabel('line_of_sight')).toBe('👁️ Line Of Sight');
     expect(formatLabel('accuracy')).toBe('✔️ Accuracy');
+    expect(formatLabel('unknown_key')).toBe(' Unknown Key');
   });
 
   it('should format value correctly', async () => {
@@ -74,5 +76,19 @@ describe('UnitDetailView', () => {
     expect(formatValue({ Food: 45, Gold: 50 })).toBe(
       '🍎 Food: 45, 💰 Gold: 50',
     );
+  });
+
+  it('should not set selected unit if not found', async () => {
+    const unitsStore = useUnitsStore();
+    vi.spyOn(unitsStore, 'selectedUnit', 'get').mockReturnValue(null);
+
+    const wrapper = mount(UnitDetailView, {
+      global: { plugins: [vuetify] },
+    });
+
+    expect(unitsStore.selectedUnit).toBeNull();
+
+    const cannotFindUnit = wrapper.find('.unit-detail-view-not-found');
+    expect(cannotFindUnit.exists()).toBe(true);
   });
 });

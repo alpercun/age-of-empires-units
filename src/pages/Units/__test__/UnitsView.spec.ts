@@ -82,4 +82,20 @@ describe('UnitsView', () => {
       range: { min: 20, max: 200 },
     });
   });
+
+  it('should update store when unit age filter is updated', async () => {
+    const unitsStore = useUnitsStore();
+
+    const wrapper = mount(UnitsView, {
+      global: {
+        plugins: [vuetify],
+      },
+    });
+
+    const unitAgeFilter = wrapper.findComponent({ name: 'UnitAgeFilter' });
+
+    await unitAgeFilter.vm.$emit('update:modelValue', ['Dark', 'Feudal']);
+
+    expect(unitsStore.selectedAges).toEqual(['Dark', 'Feudal']);
+  });
 });
