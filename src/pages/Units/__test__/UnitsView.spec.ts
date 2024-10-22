@@ -24,7 +24,7 @@ describe('UnitsView', () => {
     const wrapper = mount(UnitsView, { global: { plugins: [vuetify] } });
 
     const title = wrapper.find('h1');
-    expect(title.text()).toBe('Units Page');
+    expect(title.text()).toBe('Units');
 
     const unitAgeFilter = wrapper.findComponent({ name: 'UnitAgeFilter' });
     expect(unitAgeFilter.exists()).toBe(true);

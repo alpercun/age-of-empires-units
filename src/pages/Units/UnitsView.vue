@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Units Page</h1>
+    <h1>Units</h1>
     <UnitAgeFilter v-model="unitsStore.selectedAges" :items="unitsStore.ages" />
     <ResourceCostFilter
       :type="unitsStore.costWood.type"
