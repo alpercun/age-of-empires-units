@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="home-view">
     <v-img
       src="/src/assets/images/aoe-image.jpg"
       alt="Age of Empires"
@@ -8,3 +8,5 @@
     />
   </v-container>
 </template>
+
+<style src="./HomeView.scss" setup lang="scss" />
