@@ -84,5 +84,11 @@
     :deep(thead tr > th) {
       padding: $spacer-6 !important;
     }
+
+    :deep(.v-data-table-rows-no-data > td) {
+      vertical-align: middle;
+      height: 35vh;
+      border-bottom: none !important;
+    }
   }
 }
