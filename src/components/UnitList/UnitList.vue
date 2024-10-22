@@ -31,7 +31,6 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useUnitsStore } from '@/stores/units';
 import type { Unit } from '@/stores/units';
 import { ref, computed } from 'vue';
 import { resourceIcons, type Resource } from './UnitList.constants';
@@ -49,7 +48,6 @@ const props = defineProps<{
 }>();
 
 const router = useRouter();
-const unitsStore = useUnitsStore();
 
 const formatCost = (cost: Unit['cost']): string => {
   if (!cost || Object.keys(cost).length === 0) return '-';
@@ -63,7 +61,6 @@ const formatCost = (cost: Unit['cost']): string => {
 };
 
 const handleRowClick = (event: Event, { item }: { item: Unit }) => {
-  unitsStore.setSelectedUnit(item);
   router.push(`/units/${item.id}`);
 };
 

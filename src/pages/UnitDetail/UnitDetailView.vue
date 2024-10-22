@@ -94,13 +94,11 @@ const formatValue = (
 };
 
 onMounted(() => {
-  if (!unit.value) {
-    const unitId = route.params.id;
-    const foundUnit = unitsStore.units.find(unit => unit.id === Number(unitId));
-    if (foundUnit) {
-      unit.value = foundUnit;
-      unitsStore.setSelectedUnit(foundUnit);
-    }
+  const unitId = route.params.id;
+  const foundUnit = unitsStore.units.find(unit => unit.id === Number(unitId));
+  if (foundUnit) {
+    unit.value = foundUnit;
+    unitsStore.setSelectedUnit(foundUnit);
   }
 });
 </script>
