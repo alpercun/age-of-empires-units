@@ -1,20 +1,12 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import HomeView from '../HomeView.vue';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
-
-const vuetify = createVuetify({
-  components,
-  directives,
-});
 
 describe('HomeView', () => {
   it('should render', () => {
     const wrapper = mount(HomeView, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
     });
     expect(wrapper.exists()).toBe(true);
@@ -23,7 +15,7 @@ describe('HomeView', () => {
   it('should render image', () => {
     const wrapper = mount(HomeView, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
     });
     const image = wrapper.find('img');
@@ -33,7 +25,7 @@ describe('HomeView', () => {
   it('should have correct image src', () => {
     const wrapper = mount(HomeView, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
     });
     const image = wrapper.find('img');

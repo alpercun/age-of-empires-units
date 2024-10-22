@@ -1,26 +1,16 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeAll, vi, beforeEach } from 'vitest';
 import UnitList from '../UnitList.vue';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
 import { useUnitsStore, type Unit } from '@/stores/units';
 import { createPinia, setActivePinia } from 'pinia';
-import ResizeObserver from 'resize-observer-polyfill';
 
 const mockRouterPush = vi.fn();
 vi.mock('vue-router', () => ({
   useRouter: () => ({ push: mockRouterPush }),
 }));
 
-const vuetify = createVuetify({
-  components,
-  directives,
-});
-
 describe('UnitList', () => {
   beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
     setActivePinia(createPinia());
   });
 
@@ -32,7 +22,7 @@ describe('UnitList', () => {
     const unitsStore = useUnitsStore();
     const wrapper = mount(UnitList, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         units: unitsStore.units,
@@ -53,7 +43,7 @@ describe('UnitList', () => {
     const unitsStore = useUnitsStore();
     const wrapper = mount(UnitList, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         units: unitsStore.units,
@@ -77,7 +67,7 @@ describe('UnitList', () => {
   it('should visible controls render correctly', () => {
     const unitsStore = useUnitsStore();
     const wrapper = mount(UnitList, {
-      global: { plugins: [vuetify] },
+      global: { plugins: [global.vuetify] },
       props: {
         units: unitsStore.units,
         headers: [
@@ -107,7 +97,7 @@ describe('UnitList', () => {
 
     const wrapper = mount(UnitList, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         units: units as Unit[],

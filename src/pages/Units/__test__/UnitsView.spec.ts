@@ -1,27 +1,19 @@
 import { mount } from '@vue/test-utils';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitsView from '../UnitsView.vue';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
 import { createPinia, setActivePinia } from 'pinia';
-import ResizeObserver from 'resize-observer-polyfill';
 import { useUnitsStore } from '@/stores/units';
 import { ResourceType } from '@/stores/units';
 
-const vuetify = createVuetify({
-  components,
-  directives,
-});
-
 describe('UnitsView', () => {
   beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
     setActivePinia(createPinia());
   });
 
   it('should be rendered', () => {
-    const wrapper = mount(UnitsView, { global: { plugins: [vuetify] } });
+    const wrapper = mount(UnitsView, {
+      global: { plugins: [global.vuetify] },
+    });
 
     const title = wrapper.find('h1');
     expect(title.text()).toBe('Units');
@@ -44,7 +36,9 @@ describe('UnitsView', () => {
     vi.spyOn(unitsStore, 'setCostFood');
     vi.spyOn(unitsStore, 'setCostGold');
 
-    const wrapper = mount(UnitsView, { global: { plugins: [vuetify] } });
+    const wrapper = mount(UnitsView, {
+      global: { plugins: [global.vuetify] },
+    });
     const resourceCostFilters = wrapper.findAllComponents({
       name: 'ResourceCostFilter',
     });
@@ -88,7 +82,7 @@ describe('UnitsView', () => {
 
     const wrapper = mount(UnitsView, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
     });
 

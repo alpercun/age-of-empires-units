@@ -9,6 +9,7 @@ export default mergeConfig(
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
+      setupFiles: ['./vitest.setup.ts'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'html'],
@@ -21,6 +22,7 @@ export default mergeConfig(
           '**/env.d.ts',
           '**/dist/**',
           '**/src/main.ts',
+          '**/global.d.ts',
         ],
       },
     },

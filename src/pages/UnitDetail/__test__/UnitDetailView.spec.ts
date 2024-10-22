@@ -1,15 +1,10 @@
 import { mount } from '@vue/test-utils';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitDetailView from '../UnitDetailView.vue';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
 import { createPinia, setActivePinia } from 'pinia';
-import ResizeObserver from 'resize-observer-polyfill';
 import type { ComponentPublicInstance } from 'vue';
 import { useUnitsStore } from '@/stores/units';
 
-// useRoute ve onMounted için mock oluştur
 vi.mock('vue-router', () => ({
   useRoute: vi.fn(() => ({ params: { id: '1' } })),
 }));
@@ -22,21 +17,15 @@ vi.mock('vue', async () => {
   };
 });
 
-const vuetify = createVuetify({
-  components,
-  directives,
-});
-
 describe('UnitDetailView', () => {
   beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
     setActivePinia(createPinia());
   });
 
   it('should be rendered', () => {
     const wrapper = mount(UnitDetailView, {
       global: {
-        plugins: [vuetify, createPinia()],
+        plugins: [global.vuetify, createPinia()],
       },
     });
     expect(wrapper.exists()).toBe(true);
@@ -44,7 +33,7 @@ describe('UnitDetailView', () => {
 
   it('should format label correctly', async () => {
     const wrapper = mount(UnitDetailView, {
-      global: { plugins: [vuetify] },
+      global: { plugins: [global.vuetify] },
     });
 
     const { formatLabel } = wrapper.vm as ComponentPublicInstance<
@@ -59,7 +48,7 @@ describe('UnitDetailView', () => {
 
   it('should format value correctly', async () => {
     const wrapper = mount(UnitDetailView, {
-      global: { plugins: [vuetify] },
+      global: { plugins: [global.vuetify] },
     });
 
     const { formatValue } = wrapper.vm as ComponentPublicInstance<
@@ -83,7 +72,7 @@ describe('UnitDetailView', () => {
     vi.spyOn(unitsStore, 'selectedUnit', 'get').mockReturnValue(null);
 
     const wrapper = mount(UnitDetailView, {
-      global: { plugins: [vuetify] },
+      global: { plugins: [global.vuetify] },
     });
 
     expect(unitsStore.selectedUnit).toBeNull();

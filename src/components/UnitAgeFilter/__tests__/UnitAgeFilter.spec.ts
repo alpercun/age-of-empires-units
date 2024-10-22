@@ -1,25 +1,12 @@
 import { mount } from '@vue/test-utils';
-import { beforeAll, describe, expect, it } from 'vitest';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
+import { describe, expect, it } from 'vitest';
 import UnitAgeFilter from '../UnitAgeFilter.vue';
-import ResizeObserver from 'resize-observer-polyfill';
-
-const vuetify = createVuetify({
-  components,
-  directives,
-});
 
 describe('UnitAgeFilter', () => {
-  beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
-  });
-
   it('should renders correctly with provided props', () => {
     const wrapper = mount(UnitAgeFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         modelValue: ['All'],
@@ -39,7 +26,7 @@ describe('UnitAgeFilter', () => {
   it('should emit update:modelValue event when a chip is clicked', () => {
     const wrapper = mount(UnitAgeFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         modelValue: ['All'],
@@ -58,7 +45,7 @@ describe('UnitAgeFilter', () => {
   it('should successfully remove a selected item when clicked again', () => {
     const wrapper = mount(UnitAgeFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         modelValue: ['All', 'Dark', 'Feudal'],

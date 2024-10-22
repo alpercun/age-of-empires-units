@@ -1,26 +1,13 @@
 import { mount } from '@vue/test-utils';
-import { beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import ResourceCostFilter from '../ResourceCostFilter.vue';
 import { ResourceType } from '@/stores/units';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
-import ResizeObserver from 'resize-observer-polyfill';
-
-const vuetify = createVuetify({
-  components,
-  directives,
-});
 
 describe('ResourceCostFilter', () => {
-  beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
-  });
-
   it('should render correctly', () => {
     const wrapper = mount(ResourceCostFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         type: ResourceType.Wood,
@@ -36,7 +23,7 @@ describe('ResourceCostFilter', () => {
   it('should slider active when checkbox active', () => {
     const wrapper = mount(ResourceCostFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         type: ResourceType.Wood,
@@ -55,7 +42,7 @@ describe('ResourceCostFilter', () => {
   it('should checkbox checked when checkbox clicked', async () => {
     const wrapper = mount(ResourceCostFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         type: ResourceType.Wood,
@@ -72,7 +59,7 @@ describe('ResourceCostFilter', () => {
   it('should emit update when slider changed', async () => {
     const wrapper = mount(ResourceCostFilter, {
       global: {
-        plugins: [vuetify],
+        plugins: [global.vuetify],
       },
       props: {
         type: ResourceType.Wood,

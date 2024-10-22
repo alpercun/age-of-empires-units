@@ -1,27 +1,18 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, beforeAll, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import App from '@/App.vue';
-import { createVuetify } from 'vuetify';
-import * as components from 'vuetify/components';
-import * as directives from 'vuetify/directives';
-import ResizeObserver from 'resize-observer-polyfill';
 import router from '@/router';
 import { createPinia, setActivePinia } from 'pinia';
-const vuetify = createVuetify({
-  components,
-  directives,
-});
 
 describe('App', () => {
-  beforeAll(() => {
-    global.ResizeObserver = ResizeObserver;
+  beforeEach(() => {
     setActivePinia(createPinia());
   });
 
   it('should render correctly', async () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [vuetify, router],
+        plugins: [global.vuetify, router],
       },
     });
 
