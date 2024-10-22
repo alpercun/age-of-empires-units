@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import type { Unit } from '@/stores/units';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { resourceIcons, type Resource } from './UnitList.constants';
 
 interface Header {
@@ -70,6 +70,12 @@ const visibleHeaders = computed(() => {
   return props.headers.filter(header =>
     selectedColumns.value.includes(header.id),
   );
+});
+
+watch(selectedColumns, (newValue, oldValue) => {
+  if (newValue.length === 0 && oldValue.length > 0) {
+    selectedColumns.value = [oldValue[0]];
+  }
 });
 </script>
 
