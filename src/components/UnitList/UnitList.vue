@@ -34,8 +34,7 @@ import { useRouter } from 'vue-router';
 import { useUnitsStore } from '@/stores/units';
 import type { Unit } from '@/stores/units';
 import { ref, computed } from 'vue';
-
-type Resource = 'Food' | 'Wood' | 'Gold';
+import { resourceIcons, type Resource } from './UnitList.constants';
 
 interface Header {
   id: string;
@@ -48,12 +47,6 @@ const props = defineProps<{
   units: Unit[];
   headers: Header[];
 }>();
-
-const resourceIcons: Record<Resource, string> = {
-  Food: '🍎',
-  Wood: '🪵',
-  Gold: '💰',
-};
 
 const router = useRouter();
 const unitsStore = useUnitsStore();

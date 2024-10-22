@@ -50,9 +50,9 @@ describe('UnitDetailView', () => {
       typeof UnitDetailView
     >;
 
-    expect(formatLabel('build_time')).toBe('Build Time');
-    expect(formatLabel('line_of_sight')).toBe('Line Of Sight');
-    expect(formatLabel('accuracy')).toBe('Accuracy');
+    expect(formatLabel('build_time')).toBe('⏱️ Build Time');
+    expect(formatLabel('line_of_sight')).toBe('👁️ Line Of Sight');
+    expect(formatLabel('accuracy')).toBe('✔️ Accuracy');
   });
 
   it('should format value correctly', async () => {
@@ -71,6 +71,8 @@ describe('UnitDetailView', () => {
     expect(formatValue(['1 spearmen', '+10 infantry', '+2 rams'])).toBe(
       '1 spearmen, +10 infantry, +2 rams',
     );
-    expect(formatValue({ Food: 45, Gold: 50 })).toBe('Food: 45, Gold: 50');
+    expect(formatValue({ Food: 45, Gold: 50 })).toBe(
+      '🍎 Food: 45, 💰 Gold: 50',
+    );
   });
 });

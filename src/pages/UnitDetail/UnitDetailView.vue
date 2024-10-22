@@ -13,7 +13,7 @@
                 v-if="key !== 'name' && key !== 'description' && key !== 'id'"
               >
                 <p class="unit-detail-view-item">
-                  <strong>{{ formatLabel(key) }}:</strong>
+                  <strong>{{ formatLabel(key) }}</strong>
                   <span>{{ formatValue(value) }}</span>
                 </p>
               </v-col>
@@ -31,6 +31,31 @@ import { useUnitsStore } from '@/stores/units';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import {
+  resourceIcons,
+  type Resource,
+} from '@/components/UnitList/UnitList.constants';
+
+const iconMap: { [key: string]: string } = {
+  expansion: '🏰',
+  age: '⏳',
+  cost: '💰',
+  wood: '🌳',
+  gold: '🥇',
+  build_time: '⏱️',
+  reload_time: '🔄',
+  attack_delay: '⏲️',
+  movement_rate: '🏃',
+  line_of_sight: '👁️',
+  hit_points: '❤️',
+  range: '🎯',
+  attack: '⚔️',
+  armor: '🛡️',
+  accuracy: '✔️',
+  blast_radius: '💥',
+  armor_bonus: '🔰',
+  attack_bonus: '⚔️➕',
+};
 
 const route = useRoute();
 const unitsStore = useUnitsStore();
@@ -39,10 +64,13 @@ const { selectedUnit } = storeToRefs(unitsStore);
 const unit = ref(unitsStore.selectedUnit);
 
 const formatLabel = (key: string): string => {
-  return key
+  const formattedKey = key
     .split('_')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+
+  const icon = iconMap[key.toLowerCase()] || '';
+  return `${icon} ${formattedKey}`;
 };
 
 const formatValue = (
@@ -57,7 +85,7 @@ const formatValue = (
       return value.join(', ');
     } else {
       return Object.entries(value)
-        .map(([key, val]) => `${key}: ${val}`)
+        .map(([key, val]) => `${resourceIcons[key as Resource]} ${key}: ${val}`)
         .join(', ');
     }
   }

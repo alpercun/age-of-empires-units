@@ -28,6 +28,10 @@
     strong {
       color: $dark-text-primary;
       font-weight: 600;
+      min-width: 160px;
+      background-color: $dark-border;
+      padding: $spacer-4;
+      border-radius: $rounded-sm;
     }
 
     span {
