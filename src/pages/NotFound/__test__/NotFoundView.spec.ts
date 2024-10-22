@@ -27,7 +27,8 @@ describe('NotFoundView', () => {
       },
     });
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.text()).toContain('404 - Page Not Found');
+    expect(wrapper.text()).toContain('Page Not Found');
+    expect(wrapper.find('.not-found-image').exists()).toBe(true);
   });
 
   it('should have correct link', () => {
