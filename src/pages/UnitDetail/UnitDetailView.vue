@@ -27,13 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { useUnitsStore, type Unit } from '@/stores/units';
+import { useUnitsStore } from '@/stores/units';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import {
   resourceIcons,
   type Resource,
 } from '@/components/UnitList/UnitList.constants';
+import type { Unit } from '@/types/interfaces';
 
 const iconMap: { [key: string]: string } = {
   expansion: '🏰',

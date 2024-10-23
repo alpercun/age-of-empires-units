@@ -1,52 +1,8 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import unitsData from '@/assets/data/age-of-empires-units.json';
-
-enum Age {
-  All = 'All',
-  Dark = 'Dark',
-  Feudal = 'Feudal',
-  Castle = 'Castle',
-  Imperial = 'Imperial',
-}
-
-export enum ResourceType {
-  Wood = 'Wood',
-  Food = 'Food',
-  Gold = 'Gold',
-}
-
-type ResourceFilter = {
-  selected: boolean;
-  type: ResourceType;
-  range: {
-    min: number;
-    max: number;
-  };
-};
-
-export interface Unit {
-  id: number;
-  name: string;
-  description: string;
-  expansion: string;
-  age: string;
-  cost: {
-    Wood?: number;
-    Food?: number;
-    Gold?: number;
-  } | null;
-  build_time?: number;
-  reload_time?: number;
-  attack_delay?: number;
-  movement_rate?: number;
-  line_of_sight?: number;
-  hit_points?: number;
-  range?: number | string;
-  attack?: number;
-  armor?: string | number;
-  accuracy?: string | number;
-}
+import { Age, ResourceType } from '@/types/enums';
+import type { ResourceFilter } from '@/types/interfaces';
 
 export const useUnitsStore = defineStore('units', () => {
   const selectedAges = ref<string[]>([Age.All]);

@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
+import type { ResourceType } from '@/types/enums';
 import { ref } from 'vue';
-import { ResourceType } from '@/stores/units';
 
 const props = defineProps<{
   type: ResourceType;

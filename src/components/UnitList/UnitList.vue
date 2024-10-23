@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import type { Unit } from '@/stores/units';
 import { ref, computed, watch } from 'vue';
 import { resourceIcons, type Resource } from './UnitList.constants';
+import type { Unit } from '@/types/interfaces';
 
 interface Header {
   id: string;
