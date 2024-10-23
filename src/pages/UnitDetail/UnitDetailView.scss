@@ -39,10 +39,46 @@
     }
   }
 
-  &-not-found {
-    text-align: center;
-    font-size: 24px;
-    color: $dark-text-primary;
-    margin-top: $spacer-8;
+  &.unit-not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  &-cannot-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $spacer-8;
+
+    &-title {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    &-description {
+      font-size: 16px;
+      color: $dark-text-secondary;
+    }
+
+    &-image {
+      width: 300px;
+      height: auto;
+      margin-bottom: $spacer-4;
+    }
+
+    &-link {
+      color: $dark-text-primary;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .unit-detail-view {
+    &-cannot-find-image {
+      width: 200px;
+    }
   }
 }

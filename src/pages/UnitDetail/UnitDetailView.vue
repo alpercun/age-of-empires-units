@@ -1,5 +1,5 @@
 <template>
-  <v-container class="unit-detail-view">
+  <v-container class="unit-detail-view" :class="{ 'unit-not-found': !unit }">
     <div v-if="unit">
       <h1 class="unit-detail-view-title">{{ unit.name }}</h1>
       <p class="unit-detail-view-description">{{ unit.description }}</p>
@@ -22,7 +22,20 @@
         </v-card-text>
       </v-card>
     </div>
-    <div v-else class="unit-detail-view-not-found">Cannot find unit</div>
+    <div v-else class="unit-detail-view-cannot-found">
+      <img
+        class="unit-detail-view-cannot-found-image"
+        src="@/assets/images/cannot-found.png"
+        alt="Cannot found unit"
+      />
+      <h1 class="unit-detail-view-cannot-found-title">Cannot found unit</h1>
+      <p class="unit-detail-view-cannot-found-description">
+        Sorry, the unit you are looking for does not exist.
+      </p>
+      <router-link class="unit-detail-view-cannot-found-link" to="/"
+        >Go to Homepage</router-link
+      >
+    </div>
   </v-container>
 </template>
 

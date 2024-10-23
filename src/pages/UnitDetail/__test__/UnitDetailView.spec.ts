@@ -66,8 +66,28 @@ describe('UnitDetailView', () => {
 
     const wrapper = mountWithOptions(UnitDetailView, {});
 
-    const cannotFindUnit = wrapper.find('.unit-detail-view-not-found');
+    await wrapper.vm.$nextTick();
+
+    const cannotFindUnit = wrapper.find('.unit-detail-view-cannot-found');
     expect(cannotFindUnit.exists()).toBe(true);
+
+    const image = cannotFindUnit.find('.unit-detail-view-cannot-found-image');
+    expect(image.exists()).toBe(true);
+    expect(image.attributes('src')).toBe('/src/assets/images/cannot-found.png');
+    expect(image.attributes('alt')).toBe('Cannot found unit');
+
+    const description = cannotFindUnit.find(
+      '.unit-detail-view-cannot-found-description',
+    );
+    expect(description.exists()).toBe(true);
+    expect(description.text()).toBe(
+      'Sorry, the unit you are looking for does not exist.',
+    );
+
+    const link = cannotFindUnit.find('.unit-detail-view-cannot-found-link');
+    expect(link.exists()).toBe(true);
+    expect(link.attributes('to')).toBe('/');
+    expect(link.text()).toBe('Go to Homepage');
   });
 
   it('should set selected unit if found', async () => {
