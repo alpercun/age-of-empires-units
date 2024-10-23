@@ -1,8 +1,8 @@
-import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeEach } from 'vitest';
 import App from '@/App.vue';
 import router from '@/router';
 import { createPinia, setActivePinia } from 'pinia';
+import { mountWithOptions } from '@/utils/mount';
 
 describe('App', () => {
   beforeEach(() => {
@@ -10,11 +10,7 @@ describe('App', () => {
   });
 
   it('should render correctly', async () => {
-    const wrapper = mount(App, {
-      global: {
-        plugins: [global.vuetify, router],
-      },
-    });
+    const wrapper = mountWithOptions(App, {});
 
     const appBar = wrapper.find('.v-app-bar');
     expect(appBar.exists()).toBe(true);

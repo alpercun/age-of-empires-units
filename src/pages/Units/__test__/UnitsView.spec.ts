@@ -1,9 +1,9 @@
-import { mount } from '@vue/test-utils';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitsView from '../UnitsView.vue';
 import { createPinia, setActivePinia } from 'pinia';
 import { useUnitsStore } from '@/stores/units';
-import { ResourceType } from '@/stores/units';
+import { ResourceType } from '@/types/enums';
+import { mountWithOptions } from '@/utils/mount';
 
 describe('UnitsView', () => {
   beforeAll(() => {
@@ -11,9 +11,7 @@ describe('UnitsView', () => {
   });
 
   it('should be rendered', () => {
-    const wrapper = mount(UnitsView, {
-      global: { plugins: [global.vuetify] },
-    });
+    const wrapper = mountWithOptions(UnitsView, {});
 
     const title = wrapper.find('h1');
     expect(title.text()).toBe('Units');
@@ -36,9 +34,7 @@ describe('UnitsView', () => {
     vi.spyOn(unitsStore, 'setCostFood');
     vi.spyOn(unitsStore, 'setCostGold');
 
-    const wrapper = mount(UnitsView, {
-      global: { plugins: [global.vuetify] },
-    });
+    const wrapper = mountWithOptions(UnitsView, {});
     const resourceCostFilters = wrapper.findAllComponents({
       name: 'ResourceCostFilter',
     });
@@ -80,11 +76,7 @@ describe('UnitsView', () => {
   it('should update store when unit age filter is updated', async () => {
     const unitsStore = useUnitsStore();
 
-    const wrapper = mount(UnitsView, {
-      global: {
-        plugins: [global.vuetify],
-      },
-    });
+    const wrapper = mountWithOptions(UnitsView, {});
 
     const unitAgeFilter = wrapper.findComponent({ name: 'UnitAgeFilter' });
 

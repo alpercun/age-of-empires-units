@@ -1,17 +1,16 @@
-import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import UnitAgeFilter from '../UnitAgeFilter.vue';
+import { mountWithOptions } from '@/utils/mount';
 
 describe('UnitAgeFilter', () => {
+  const defaultProps = {
+    modelValue: ['All'],
+    items: ['All', 'Dark', 'Feudal', 'Castle', 'Imperial'],
+  };
+
   it('should renders correctly with provided props', () => {
-    const wrapper = mount(UnitAgeFilter, {
-      global: {
-        plugins: [global.vuetify],
-      },
-      props: {
-        modelValue: ['All'],
-        items: ['All', 'Dark', 'Feudal', 'Castle', 'Imperial'],
-      },
+    const wrapper = mountWithOptions(UnitAgeFilter, {
+      props: defaultProps,
     });
 
     const chips = wrapper.findAll('.v-chip');
@@ -24,14 +23,8 @@ describe('UnitAgeFilter', () => {
   });
 
   it('should emit update:modelValue event when a chip is clicked', () => {
-    const wrapper = mount(UnitAgeFilter, {
-      global: {
-        plugins: [global.vuetify],
-      },
-      props: {
-        modelValue: ['All'],
-        items: ['All', 'Dark', 'Feudal', 'Castle', 'Imperial'],
-      },
+    const wrapper = mountWithOptions(UnitAgeFilter, {
+      props: defaultProps,
     });
 
     const chips = wrapper.findAll('.v-chip');
@@ -43,14 +36,8 @@ describe('UnitAgeFilter', () => {
   });
 
   it('should successfully remove a selected item when clicked again', () => {
-    const wrapper = mount(UnitAgeFilter, {
-      global: {
-        plugins: [global.vuetify],
-      },
-      props: {
-        modelValue: ['All', 'Dark', 'Feudal'],
-        items: ['All', 'Dark', 'Feudal', 'Castle', 'Imperial'],
-      },
+    const wrapper = mountWithOptions(UnitAgeFilter, {
+      props: { ...defaultProps, modelValue: ['All', 'Dark', 'Feudal'] },
     });
 
     const chips = wrapper.findAll('.v-chip');

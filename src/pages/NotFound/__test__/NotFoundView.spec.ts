@@ -1,13 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import NotFoundView from '../NotFoundView.vue';
-import { mount } from '@vue/test-utils';
 import { RouterLinkStub } from '@vue/test-utils';
+import { mountWithOptions } from '@/utils/mount';
 
 describe('NotFoundView', () => {
   it('should render', () => {
-    const wrapper = mount(NotFoundView, {
+    const wrapper = mountWithOptions(NotFoundView, {
       global: {
-        plugins: [global.vuetify],
         stubs: {
           RouterLink: RouterLinkStub,
         },
@@ -19,7 +18,7 @@ describe('NotFoundView', () => {
   });
 
   it('should have correct link', () => {
-    const wrapper = mount(NotFoundView, {
+    const wrapper = mountWithOptions(NotFoundView, {
       global: {
         stubs: { RouterLink: RouterLinkStub },
       },

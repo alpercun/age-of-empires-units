@@ -1,8 +1,9 @@
-import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeAll, vi, beforeEach } from 'vitest';
 import UnitList from '../UnitList.vue';
-import { useUnitsStore, type Unit } from '@/stores/units';
+import { useUnitsStore } from '@/stores/units';
 import { createPinia, setActivePinia } from 'pinia';
+import type { Unit } from '@/types/interfaces';
+import { mountWithOptions } from '@/utils/mount';
 
 const mockRouterPush = vi.fn();
 vi.mock('vue-router', () => ({
@@ -20,10 +21,7 @@ describe('UnitList', () => {
 
   it('should table render correctly', () => {
     const unitsStore = useUnitsStore();
-    const wrapper = mount(UnitList, {
-      global: {
-        plugins: [global.vuetify],
-      },
+    const wrapper = mountWithOptions(UnitList, {
       props: {
         units: unitsStore.units,
         headers: [
@@ -41,10 +39,7 @@ describe('UnitList', () => {
 
   it('should navigate to unit detail page when a row is clicked', async () => {
     const unitsStore = useUnitsStore();
-    const wrapper = mount(UnitList, {
-      global: {
-        plugins: [global.vuetify],
-      },
+    const wrapper = mountWithOptions(UnitList, {
       props: {
         units: unitsStore.units,
         headers: [
@@ -66,8 +61,7 @@ describe('UnitList', () => {
 
   it('should visible controls render correctly', () => {
     const unitsStore = useUnitsStore();
-    const wrapper = mount(UnitList, {
-      global: { plugins: [global.vuetify] },
+    const wrapper = mountWithOptions(UnitList, {
       props: {
         units: unitsStore.units,
         headers: [
@@ -95,10 +89,7 @@ describe('UnitList', () => {
       { id: 2, name: 'Unit 2', cost: { Wood: 100 }, age: 'Feudal' },
     ];
 
-    const wrapper = mount(UnitList, {
-      global: {
-        plugins: [global.vuetify],
-      },
+    const wrapper = mountWithOptions(UnitList, {
       props: {
         units: units as Unit[],
         headers,
@@ -127,5 +118,45 @@ describe('UnitList', () => {
       'name',
       'age',
     ]);
+  });
+
+  it('should prevent deselecting all columns in v-select', async () => {
+    const headers = [
+      { id: 'name', title: 'Name', key: 'name' },
+      { id: 'cost', title: 'Cost', key: 'cost' },
+      { id: 'age', title: 'Age', key: 'age' },
+    ];
+
+    const units = [
+      { id: 1, name: 'Unit 1', cost: { Food: 50 }, age: 'Dark' },
+      { id: 2, name: 'Unit 2', cost: { Wood: 100 }, age: 'Feudal' },
+    ];
+
+    const wrapper = mountWithOptions(UnitList, {
+      props: {
+        units: units as Unit[],
+        headers,
+      },
+    });
+
+    const vSelect = wrapper.findComponent({ name: 'v-select' });
+    expect(vSelect.exists()).toBe(true);
+
+    expect(vSelect.props('modelValue')).toEqual(['name', 'cost', 'age']);
+
+    await vSelect.vm.$emit('update:modelValue', []);
+    await wrapper.vm.$nextTick();
+
+    expect(vSelect.props('modelValue')).toEqual(['name']);
+
+    await vSelect.vm.$emit('update:modelValue', ['cost']);
+    await wrapper.vm.$nextTick();
+
+    expect(vSelect.props('modelValue')).toEqual(['cost']);
+
+    await vSelect.vm.$emit('update:modelValue', []);
+    await wrapper.vm.$nextTick();
+
+    expect(vSelect.props('modelValue')).toEqual(['cost']);
   });
 });

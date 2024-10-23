@@ -23,6 +23,7 @@ export default mergeConfig(
           '**/dist/**',
           '**/src/main.ts',
           '**/global.d.ts',
+          '**/types/**',
         ],
       },
     },

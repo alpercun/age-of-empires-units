@@ -1,8 +1,8 @@
-import { mount } from '@vue/test-utils';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitDetailView from '../UnitDetailView.vue';
 import { createPinia, setActivePinia } from 'pinia';
 import type { ComponentPublicInstance } from 'vue';
+import { mountWithOptions } from '@/utils/mount';
 import { useUnitsStore } from '@/stores/units';
 
 vi.mock('vue-router', () => ({
@@ -23,18 +23,12 @@ describe('UnitDetailView', () => {
   });
 
   it('should be rendered', () => {
-    const wrapper = mount(UnitDetailView, {
-      global: {
-        plugins: [global.vuetify, createPinia()],
-      },
-    });
+    const wrapper = mountWithOptions(UnitDetailView, {});
     expect(wrapper.exists()).toBe(true);
   });
 
   it('should format label correctly', async () => {
-    const wrapper = mount(UnitDetailView, {
-      global: { plugins: [global.vuetify] },
-    });
+    const wrapper = mountWithOptions(UnitDetailView, {});
 
     const { formatLabel } = wrapper.vm as ComponentPublicInstance<
       typeof UnitDetailView
@@ -47,9 +41,7 @@ describe('UnitDetailView', () => {
   });
 
   it('should format value correctly', async () => {
-    const wrapper = mount(UnitDetailView, {
-      global: { plugins: [global.vuetify] },
-    });
+    const wrapper = mountWithOptions(UnitDetailView, {});
 
     const { formatValue } = wrapper.vm as ComponentPublicInstance<
       typeof UnitDetailView
@@ -68,16 +60,51 @@ describe('UnitDetailView', () => {
   });
 
   it('should not set selected unit if not found', async () => {
-    const unitsStore = useUnitsStore();
-    vi.spyOn(unitsStore, 'selectedUnit', 'get').mockReturnValue(null);
+    vi.mock('vue-router', () => ({
+      useRoute: vi.fn(() => ({ params: { id: '123123' } })),
+    }));
 
-    const wrapper = mount(UnitDetailView, {
-      global: { plugins: [global.vuetify] },
-    });
-
-    expect(unitsStore.selectedUnit).toBeNull();
+    const wrapper = mountWithOptions(UnitDetailView, {});
 
     const cannotFindUnit = wrapper.find('.unit-detail-view-not-found');
     expect(cannotFindUnit.exists()).toBe(true);
+  });
+
+  it('should set selected unit if found', async () => {
+    const mockUnit = {
+      id: 1,
+      name: 'Archer',
+      description:
+        'Quick and light. Weak at close range; excels at battle from distance',
+      expansion: 'Age of Kings',
+      age: 'Feudal',
+      cost: {
+        Wood: 25,
+        Gold: 45,
+      },
+      build_time: 35,
+      reload_time: 2,
+      attack_delay: 0.35,
+      movement_rate: 0.96,
+      line_of_sight: 6,
+      hit_points: 4,
+      range: 30,
+      attack: 4,
+      armor: '0/0',
+      accuracy: '80%',
+    };
+
+    const unitsStore = useUnitsStore();
+    vi.spyOn(unitsStore, 'getSelectedUnit').mockReturnValue(mockUnit);
+
+    const wrapper = mountWithOptions(UnitDetailView, {});
+
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.vm.unit).toEqual(mockUnit);
+    expect(wrapper.find('.unit-detail-view-title').text()).toBe('Archer');
+    expect(wrapper.find('.unit-detail-view-description').text()).toBe(
+      'Quick and light. Weak at close range; excels at battle from distance',
+    );
   });
 });
