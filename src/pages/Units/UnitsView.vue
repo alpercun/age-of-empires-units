@@ -42,10 +42,10 @@ import { Age } from '@/types/enums';
 const unitsStore = useUnitsStore();
 
 const headers = ref([
-  { id: 'id', title: 'ID', key: 'id' },
-  { id: 'name', title: 'Name', key: 'name' },
-  { id: 'age', title: 'Age', key: 'age' },
-  { id: 'cost', title: 'Cost', key: 'cost' },
+  { id: 'id', title: 'ID', key: 'id', width: '10%' },
+  { id: 'name', title: 'Name', key: 'name', width: '20%' },
+  { id: 'age', title: 'Age', key: 'age', width: '10%' },
+  { id: 'cost', title: 'Cost', key: 'cost', width: '20%' },
 ]);
 
 const handleAgeSelection = (selectedAges: string[]) => {
