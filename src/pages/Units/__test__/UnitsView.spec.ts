@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 import UnitsView from '../UnitsView.vue';
 import { createPinia, setActivePinia } from 'pinia';
 import { useUnitsStore } from '@/stores/units';
-import { ResourceType } from '@/types/enums';
+import { ResourceType, Age } from '@/types/enums';
 import { mountWithOptions } from '@/utils/mount';
 
 describe('UnitsView', () => {
@@ -83,5 +83,35 @@ describe('UnitsView', () => {
     await unitAgeFilter.vm.$emit('update:modelValue', ['Dark', 'Feudal']);
 
     expect(unitsStore.selectedAges).toEqual(['Dark', 'Feudal']);
+  });
+
+  it('should handle age selection correctly', async () => {
+    const unitsStore = useUnitsStore();
+    const wrapper = mountWithOptions(UnitsView, {});
+
+    const unitAgeFilter = wrapper.findComponent({ name: 'UnitAgeFilter' });
+
+    await unitAgeFilter.vm.$emit('update:modelValue', [
+      Age.All,
+      Age.Dark,
+      Age.Feudal,
+      Age.Castle,
+      Age.Imperial,
+    ]);
+    expect(unitsStore.selectedAges).toEqual([Age.All]);
+
+    await unitAgeFilter.vm.$emit('update:modelValue', [
+      Age.Dark,
+      Age.Feudal,
+      Age.Castle,
+      Age.Imperial,
+    ]);
+    expect(unitsStore.selectedAges).toEqual([Age.All]);
+
+    await unitAgeFilter.vm.$emit('update:modelValue', [Age.Dark, Age.Feudal]);
+    expect(unitsStore.selectedAges).toEqual([Age.Dark, Age.Feudal]);
+
+    await unitAgeFilter.vm.$emit('update:modelValue', []);
+    expect(unitsStore.selectedAges).toEqual([]);
   });
 });

@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <h1>Units</h1>
-    <UnitAgeFilter v-model="unitsStore.selectedAges" :items="unitsStore.ages" />
+    <UnitAgeFilter
+      v-model="unitsStore.selectedAges"
+      :items="unitsStore.ages"
+      @update:model-value="handleAgeSelection"
+    />
     <ResourceCostFilter
       :type="unitsStore.costWood.type"
       :min="MIN_COST"
@@ -33,6 +37,7 @@ import UnitList from '@/components/UnitList/UnitList.vue';
 import UnitAgeFilter from '@/components/UnitAgeFilter/UnitAgeFilter.vue';
 import ResourceCostFilter from '@/components/ResourceCostFilter/ResourceCostFilter.vue';
 import { useUnitsStore } from '@/stores/units';
+import { Age } from '@/types/enums';
 
 const unitsStore = useUnitsStore();
 
@@ -42,4 +47,22 @@ const headers = ref([
   { id: 'age', title: 'Age', key: 'age' },
   { id: 'cost', title: 'Cost', key: 'cost' },
 ]);
+
+const handleAgeSelection = (selectedAges: string[]) => {
+  const otherOptions = [Age.Dark, Age.Feudal, Age.Castle, Age.Imperial];
+
+  if (
+    selectedAges.includes(Age.All) &&
+    otherOptions.every(age => selectedAges.includes(age))
+  ) {
+    unitsStore.selectedAges = [Age.All];
+  } else if (
+    !selectedAges.includes(Age.All) &&
+    otherOptions.every(age => selectedAges.includes(age))
+  ) {
+    unitsStore.selectedAges = [Age.All];
+  } else {
+    unitsStore.selectedAges = selectedAges;
+  }
+};
 </script>
