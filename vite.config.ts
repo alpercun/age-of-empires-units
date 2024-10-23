@@ -13,7 +13,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/assets/variables/index" as *;`,
+        additionalData: `@use "@/assets/styles/variables/index" as *;`,
         api: 'modern-compiler',
       },
     },
