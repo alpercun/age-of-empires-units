@@ -32,8 +32,8 @@
       <p class="unit-detail-view-cannot-found-description">
         Sorry, the unit you are looking for does not exist.
       </p>
-      <router-link class="unit-detail-view-cannot-found-link" to="/"
-        >Go to Homepage</router-link
+      <router-link class="unit-detail-view-cannot-found-link" to="/units"
+        >Go to Units</router-link
       >
     </div>
   </v-container>

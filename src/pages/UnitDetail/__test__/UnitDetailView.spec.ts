@@ -86,8 +86,8 @@ describe('UnitDetailView', () => {
 
     const link = cannotFindUnit.find('.unit-detail-view-cannot-found-link');
     expect(link.exists()).toBe(true);
-    expect(link.attributes('to')).toBe('/');
-    expect(link.text()).toBe('Go to Homepage');
+    expect(link.attributes('to')).toBe('/units');
+    expect(link.text()).toBe('Go to Units');
   });
 
   it('should set selected unit if found', async () => {
