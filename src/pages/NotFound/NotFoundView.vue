@@ -9,7 +9,7 @@
     <p class="not-found-description">
       Sorry, the page you are looking for does not exist.
     </p>
-    <router-link class="not-found-link" to="/">Go to Homepage</router-link>
+    <router-link class="not-found-link" to="/">Back to Homepage</router-link>
   </div>
 </template>
 
