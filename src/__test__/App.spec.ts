@@ -32,13 +32,17 @@ describe('App', () => {
     expect(vMain.exists()).toBe(true);
   });
 
-  it('should handle updateIsDarkTheme event from AppHeader', async () => {
+  it('should render AppHeader and initialize isDarkTheme as false', () => {
     const wrapper = mountWithOptions(App, {});
     const appHeader = wrapper.findComponent({ name: 'AppHeader' });
 
     expect(appHeader.exists()).toBe(true);
-
     expect(wrapper.vm.isDarkTheme).toBe(false);
+  });
+
+  it('should update isDarkTheme when AppHeader emits update:isDarkTheme event', async () => {
+    const wrapper = mountWithOptions(App, {});
+    const appHeader = wrapper.findComponent({ name: 'AppHeader' });
 
     await appHeader.vm.$emit('update:isDarkTheme', true);
 
