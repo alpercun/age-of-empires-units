@@ -3,7 +3,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: var(--surface);
 
   &-title {
     font-size: 24px;
@@ -20,6 +19,10 @@
   &-logo {
     width: 300px;
   }
+}
+
+.app-header-wrapper {
+  background-color: var(--surface);
 }
 
 @media (max-width: 768px) {

@@ -19,7 +19,7 @@
       class="unit-list-table"
       :headers="visibleHeaders"
       :items="units"
-      height="400"
+      height="460"
       @click:row="handleRowClick"
     >
       <template #[`item.cost`]="{ item }">
