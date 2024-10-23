@@ -16,4 +16,28 @@
     align-items: center;
     gap: 10px;
   }
+
+  &-logo {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    &-logo {
+      width: 150px;
+    }
+
+    &-buttons {
+      gap: $spacer-3;
+
+      :deep(.v-btn) {
+        font-size: 10px;
+        padding: $spacer-1;
+        width: auto;
+        min-width: 60px;
+        height: 30px;
+      }
+    }
+  }
 }

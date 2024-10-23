@@ -4,7 +4,6 @@
       src="@/assets/images/logo.png"
       alt="Age of Empires Logo"
       class="app-header-logo"
-      width="300"
     />
     <div class="app-header-buttons">
       <v-btn to="/" variant="text">Home</v-btn>

@@ -28,3 +28,11 @@
     gap: $spacer-4;
   }
 }
+
+@media (max-width: 768px) {
+  .resource-cost-filter {
+    &-slider {
+      min-width: 140px;
+    }
+  }
+}

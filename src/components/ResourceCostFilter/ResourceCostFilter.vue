@@ -14,6 +14,7 @@
           v-model="range"
           :min="min"
           :max="max"
+          thumb-size="14"
           :step="1"
           hide-details
           :disabled="!selected"
