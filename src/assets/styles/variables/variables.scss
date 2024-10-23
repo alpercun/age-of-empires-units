@@ -40,3 +40,32 @@ $dark-secondary: #03dac6;
 $dark-text-primary: #ffffff;
 $dark-text-secondary: #9e9e9e;
 $dark-border: #2c2c2c;
+
+$aoe-dark: #1a1a2e;
+$aoe-light: #e1d9c4;
+$aoe-gold: #d4af37;
+$aoe-accent: #8b4513;
+$aoe-text-light: #f0e6d2;
+$aoe-text-dark: #2c2c2c;
+
+:root {
+  --background: #{$aoe-light};
+  --surface: color-mix(in srgb, var(--background) 95%, white);
+  --primary: #{$aoe-gold};
+  --secondary: #{$aoe-accent};
+  --text-primary: #{$aoe-text-dark};
+  --text-secondary: color-mix(in srgb, var(--text-primary) 80%, white);
+  --border: color-mix(in srgb, var(--background) 90%, black);
+  --table-row-alt: color-mix(in srgb, var(--background) 95%, black);
+}
+
+body.dark-theme {
+  --background: #{$aoe-dark};
+  --surface: color-mix(in srgb, var(--background) 95%, white);
+  --primary: #{$aoe-gold};
+  --secondary: color-mix(in srgb, var(--secondary) 90%, white);
+  --text-primary: #{$aoe-text-light};
+  --text-secondary: color-mix(in srgb, var(--text-primary) 85%, black);
+  --border: color-mix(in srgb, var(--background) 90%, white);
+  --table-row-alt: color-mix(in srgb, var(--background) 93%, white);
+}

@@ -2,10 +2,10 @@
   &-column-visibility-controls {
     max-width: 260px;
     height: 32px;
-    background-color: $dark-surface;
-    border: 1px solid $dark-border;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
     border-radius: $spacer-4;
-    color: $dark-text-primary;
+    color: var(--text-primary);
 
     :deep(.v-field__input) {
       min-height: 32px;
@@ -27,7 +27,7 @@
     :deep(.v-select__selection--comma:first-of-type::after) {
       content: 'Visible Columns';
       font-size: 14px;
-      color: $dark-text-primary;
+      color: var(--text-primary);
     }
 
     :deep(.v-field__append-inner) {
@@ -62,14 +62,14 @@
   }
 
   &-table {
-    background-color: $dark-surface;
-    border: 1px solid $dark-border;
-    color: $dark-text-primary;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
     border-radius: $spacer-4;
     margin-top: $spacer-8;
 
     &-name {
-      color: $dark-text-primary;
+      color: var(--text-primary);
       text-decoration: none;
     }
 
@@ -79,6 +79,12 @@
       vertical-align: middle;
       height: 100%;
       padding: $spacer-6;
+    }
+
+    :deep(.v-data-table__td) {
+      &:hover {
+        color: var(--text-primary) !important;
+      }
     }
 
     :deep(thead tr > th) {

@@ -1,20 +1,20 @@
 .unit-detail-view {
   &-title {
-    color: $dark-text-primary;
+    color: var(--text-primary);
     font-size: 32px;
     font-weight: 600;
     margin-bottom: $spacer-8;
   }
 
   &-description {
-    color: $dark-text-secondary;
+    color: var(--text-secondary);
     font-size: 16px;
     margin-bottom: $spacer-8;
   }
 
   &-card {
-    background-color: $dark-surface;
-    border: 1px solid $dark-border;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
     border-radius: $rounded-lg;
   }
 
@@ -26,16 +26,16 @@
     gap: $spacer-4;
 
     strong {
-      color: $dark-text-primary;
+      color: var(--text-primary);
       font-weight: 600;
       min-width: 160px;
-      background-color: $dark-border;
+      background-color: var(--border);
       padding: $spacer-4;
       border-radius: $rounded-sm;
     }
 
     span {
-      color: $dark-text-secondary;
+      color: var(--text-secondary);
     }
   }
 
@@ -56,11 +56,12 @@
     &-title {
       font-size: 32px;
       font-weight: bold;
+      color: var(--text-primary);
     }
 
     &-description {
       font-size: 16px;
-      color: $dark-text-secondary;
+      color: var(--text-secondary);
     }
 
     &-image {
@@ -70,7 +71,7 @@
     }
 
     &-link {
-      color: $dark-text-primary;
+      color: var(--text-primary);
     }
   }
 }

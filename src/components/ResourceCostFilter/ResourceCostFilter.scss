@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: $spacer-6;
+  background-color: var(--background);
 
   &-checkbox {
     min-width: 100px;
@@ -12,10 +13,10 @@
     min-width: 180px;
 
     &-value {
-      color: $gray-5;
+      color: var(--text-secondary);
 
       &-active {
-        color: $gray-4;
+        color: var(--text-primary);
       }
     }
   }

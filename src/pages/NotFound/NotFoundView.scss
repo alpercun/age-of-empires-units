@@ -5,20 +5,22 @@
   justify-content: center;
   height: 100%;
   gap: $spacer-8;
+  background-color: var(--background);
 
   &-title {
     font-size: 2rem;
     font-weight: bold;
+    color: var(--text-primary);
   }
 
   &-description {
     font-size: 1rem;
-    color: $dark-text-secondary;
+    color: var(--text-secondary);
   }
 
   &-link {
     font-size: 1rem;
-    color: $dark-text-primary;
+    color: var(--text-primary);
   }
 
   &-image {
