@@ -71,34 +71,34 @@ pnpm lint
 
 ## Test Results
 
-| File                              | % Stmts                                | % Branch                               | % Funcs                                | % Lines                                |
-| --------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| All files                         | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src                               | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| App.vue                           | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/components/AppHeader          | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| AppHeader.vue                     | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/components/ResourceCostFilter | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| ResourceCostFilter.vue            | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/components/UnitAgeFilter      | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| UnitAgeFilter.vue                 | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/components/UnitList           | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| UnitList.constants.ts             | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| UnitList.vue                      | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/pages/Home                    | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| HomeView.vue                      | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/pages/NotFound                | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| NotFoundView.vue                  | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/pages/UnitDetail              | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| UnitDetailView.vue                | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/pages/Units                   | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| UnitsView.vue                     | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/router                        | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| index.ts                          | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/stores                        | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| units.ts                          | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| src/utils                         | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
-| mount.ts                          | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> | <span style="color: green;">100</span> |
+| File                              | % Stmts | % Branch | % Funcs | % Lines |
+| --------------------------------- | ------- | -------- | ------- | ------- |
+| All files                         | 100     | 100      | 100     | 100     |
+| src                               | 100     | 100      | 100     | 100     |
+| App.vue                           | 100     | 100      | 100     | 100     |
+| src/components/AppHeader          | 100     | 100      | 100     | 100     |
+| AppHeader.vue                     | 100     | 100      | 100     | 100     |
+| src/components/ResourceCostFilter | 100     | 100      | 100     | 100     |
+| ResourceCostFilter.vue            | 100     | 100      | 100     | 100     |
+| src/components/UnitAgeFilter      | 100     | 100      | 100     | 100     |
+| UnitAgeFilter.vue                 | 100     | 100      | 100     | 100     |
+| src/components/UnitList           | 100     | 100      | 100     | 100     |
+| UnitList.constants.ts             | 100     | 100      | 100     | 100     |
+| UnitList.vue                      | 100     | 100      | 100     | 100     |
+| src/pages/Home                    | 100     | 100      | 100     | 100     |
+| HomeView.vue                      | 100     | 100      | 100     | 100     |
+| src/pages/NotFound                | 100     | 100      | 100     | 100     |
+| NotFoundView.vue                  | 100     | 100      | 100     | 100     |
+| src/pages/UnitDetail              | 100     | 100      | 100     | 100     |
+| UnitDetailView.vue                | 100     | 100      | 100     | 100     |
+| src/pages/Units                   | 100     | 100      | 100     | 100     |
+| UnitsView.vue                     | 100     | 100      | 100     | 100     |
+| src/router                        | 100     | 100      | 100     | 100     |
+| index.ts                          | 100     | 100      | 100     | 100     |
+| src/stores                        | 100     | 100      | 100     | 100     |
+| units.ts                          | 100     | 100      | 100     | 100     |
+| src/utils                         | 100     | 100      | 100     | 100     |
+| mount.ts                          | 100     | 100      | 100     | 100     |
 
 The table above shows the latest test results for our project. These results reflect the reliability and quality of our application.
 
